@@ -10,9 +10,9 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN chown -R jekyll .
-
-RUN jekyll build
+RUN chown -R jekyll . \
+    && jekyll build \
+    && rm -rf /var/lib/apt/lists/* 
 
 FROM nginx:alpine
 
